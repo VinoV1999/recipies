@@ -63,7 +63,6 @@ function Recipies() {
               <div className="recipes" id="recipeID">
                 {Array.isArray(sortedRecipes) && sortedRecipes.length > 0 ? (
                   sortedRecipes.map(({id, title, image}, index ) => {
-                    console.log(id, title)
                     return(
                     <RecipeCard
                     id={id}

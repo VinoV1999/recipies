@@ -16,7 +16,7 @@ const RecipeCard = ({ id, title, imgurl , index, handFavClick }) => {
         <h3>{title}</h3>
 
         <span className="cardBtns" >
-          <Link className="getdtlsbtn" to={`/details?index=${index}`} >Get Details</Link>
+          <Link className="getdtlsbtn" to={`/details?id=${id}`} >Get Details</Link>
           <button onClick={handFavouriteClick}>{favourite.includes(id) ? 'Remove from Fav' : 'Add to Fav' }</button>
         </span>
       </div>

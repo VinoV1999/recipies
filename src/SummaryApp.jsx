@@ -4,14 +4,12 @@ import { useRecipiesCtx } from "./Context/RecipiesContext";
 
 function SummaryApp() {
   const { recipes } = useRecipiesCtx();
-
   const [query, _] = useSearchParams();
-  const selectedRecipe =
-    recipes.length > 0 ? recipes[query.get("index")] : null;
+  const selectedRecipe = recipes.filter(item => item.id === parseInt(query.get("id")))[0];
 
   return (
     <div className="summaryContainer">
-      {selectedRecipe && (
+      {selectedRecipe ? (
         <div className="summaryCard">
           <img
             src={selectedRecipe.image}
@@ -19,7 +17,7 @@ function SummaryApp() {
             alt="Recipie of the image"
           />
           <div className="summaryDetails">
-            <h3 className="">{selectedRecipe.title}</h3>
+            <h3 className="">{selectedRecipe?.title}</h3>
             <div dangerouslySetInnerHTML={{ __html: selectedRecipe.summary }} />
             <br />
             <div className="instructionsCard">
@@ -28,7 +26,7 @@ function SummaryApp() {
             <div
               dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }}
             />
-            {selectedRecipe.analyzedInstructions.length > 0 && (
+            {selectedRecipe.analyzedInstructions?.length > 0 && (
               <div className="analyzedInstructions">
                 <div className="instructionsCard">
                   <h3>Steps</h3>
@@ -42,7 +40,7 @@ function SummaryApp() {
             )}
           </div>
         </div>
-      )}
+      ):<div>oops you might have refreshed the page. so we lost the data!.</div>}
     </div>
   );
 }
